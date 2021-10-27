@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    function:
+      definition: otherReceived
+    stream:
+      default-binder: rabbit
+      default:
+        group: initiator
+      bindings:
+        this:
+          destination: this-topic
+        that:
+          destination: that-topic
+        otherReceived-in-0:
+          destination: other-topic

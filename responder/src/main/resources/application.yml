@@ -1,0 +1,17 @@
+spring:
+  main:
+    web-application-type: none
+  cloud:
+    function:
+      definition: thisReceived;convertThatToOther
+    stream:
+      default-binder: rabbit
+      default:
+        group: responder
+      bindings:
+        thisReceived-in-0:
+          destination: this-topic
+        convertThatToOther-in-0:
+          destination: that-topic
+        convertThatToOther-out-0:
+          destination: other-topic
