@@ -20,15 +20,15 @@ public class MessageService {
     public Event generate(String type) {
         Event event = Event.builder()
                 .id(UUID.randomUUID().toString())
-                .type(type)
                 .time(OffsetDateTime.now())
+                .type(type)
                 .build();
         streamBridge.send(type, event);
         return event;
     }
 
     @Bean
-    public Consumer<Event> otherReceived() {
-        return evt -> log.info("Received: {}", evt);
+    public Consumer<Event> pieReceived() {
+        return event -> log.info("Received: {}", event);
     }
 }

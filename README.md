@@ -49,6 +49,6 @@ There are 3 kinds of events that flow through this system:
 
 | Event Type | Producer Component | Consumer Component | Notes |
 | ---------- | -------- | -------- | ----- |
-| `this` | `initiator` | `responder` | Generate this event through `POST /generate/this` in the initiator component |
-| `that` | `initiator` | `responder` | Generate this event through the `POST /generate/that` in the initiator component |
-| `other` | `responder` | `initiator` | The responder generates this event upon receiving the other event |
+| `orange` | `initiator` | `responder` | Generate this event through `POST /generate/orange` in the initiator component |
+| `apple` | `initiator` | `responder` | Generate this event through the `POST /generate/apple` in the initiator component |
+| `pie` | `responder` | `initiator` | The responder generates this event upon receiving the *apple* event |

@@ -10,13 +10,13 @@ public class MessageController {
 
     private final MessageService messageService;
 
-    @PostMapping("/generate/this")
-    public Event generateThisEvent() {
-        return messageService.generate("this");
+    @PostMapping("/generate/apple")
+    public Event generateAppleEvent() {
+        return messageService.generate("apple");
     }
 
-    @PostMapping("/generate/that")
-    public Event generateThatEvent() {
-        return messageService.generate("that");
+    @PostMapping("/generate/orange")
+    public Event generateOrangeEvent() {
+        return messageService.generate("orange");
     }
 }

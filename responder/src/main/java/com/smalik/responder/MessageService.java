@@ -12,18 +12,18 @@ import java.util.function.Function;
 public class MessageService {
 
     @Bean
-    public Consumer<Event> thisReceived() {
-        return evt -> log.info("Received: {}", evt);
+    public Consumer<Event> orangeReceived() {
+        return event -> log.info("Received: {}", event);
     }
 
     @Bean
-    public Function<Event, Event> convertThatToOther() {
-        return that -> {
-            log.info("Received: {}", that);
+    public Function<Event, Event> makeApplePie() {
+        return event -> {
+            log.info("Received: {}", event);
             return Event.builder()
-                    .id(that.getId())
-                    .type("other")
-                    .time(that.getTime())
+                    .id(event.getId())
+                    .type("pie")
+                    .time(event.getTime())
                     .build();
         };
     }

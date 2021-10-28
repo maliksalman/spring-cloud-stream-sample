@@ -3,15 +3,16 @@ spring:
     web-application-type: none
   cloud:
     function:
-      definition: thisReceived;convertThatToOther
+      definition: orangeReceived;makeApplePie
     stream:
       default-binder: rabbit
       default:
         group: responder
       bindings:
-        thisReceived-in-0:
-          destination: this-topic
-        convertThatToOther-in-0:
-          destination: that-topic
-        convertThatToOther-out-0:
-          destination: other-topic
+        orangeReceived-in-0:
+          destination: orange-topic
+        makeApplePie-in-0:
+          destination: apple-topic
+        makeApplePie-out-0:
+          destination: pie-topic
+

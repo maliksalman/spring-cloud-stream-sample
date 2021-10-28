@@ -1,15 +1,15 @@
 spring:
   cloud:
     function:
-      definition: otherReceived
+      definition: pieReceived
     stream:
       default-binder: rabbit
       default:
         group: initiator
       bindings:
-        this:
-          destination: this-topic
-        that:
-          destination: that-topic
-        otherReceived-in-0:
-          destination: other-topic
+        apple:
+          destination: apple-topic
+        orange:
+          destination: orange-topic
+        pieReceived-in-0:
+          destination: pie-topic
