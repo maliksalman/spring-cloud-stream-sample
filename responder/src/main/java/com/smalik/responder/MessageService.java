@@ -12,18 +12,17 @@ import java.util.function.Function;
 public class MessageService {
 
     @Bean
-    public Consumer<Event> orangeReceived() {
-        return event -> log.info("Received: {}", event);
+    public Consumer<Fruit> orangeReceived() {
+        return orange -> log.info("Received: {}", orange);
     }
 
     @Bean
-    public Function<Event, Event> makeApplePie() {
-        return event -> {
-            log.info("Received: {}", event);
-            return Event.builder()
-                    .id(event.getId())
-                    .type("pie")
-                    .time(event.getTime())
+    public Function<Fruit, Pie> makeApplePie() {
+        return apple -> {
+            log.info("Received: {}", apple);
+            return Pie.builder()
+                    .id(apple.getId())
+                    .time(apple.getTime())
                     .build();
         };
     }

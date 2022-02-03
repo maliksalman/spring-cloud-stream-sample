@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Event {
+public class Fruit {
     private String id;
     private String type;
     private OffsetDateTime time;

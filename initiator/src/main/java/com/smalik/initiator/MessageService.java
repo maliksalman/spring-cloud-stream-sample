@@ -17,18 +17,18 @@ public class MessageService {
 
     private final StreamBridge streamBridge;
 
-    public Event generate(String type) {
-        Event event = Event.builder()
+    public Fruit generate(String type) {
+        Fruit fruit = Fruit.builder()
                 .id(UUID.randomUUID().toString())
                 .time(OffsetDateTime.now())
                 .type(type)
                 .build();
-        streamBridge.send(type, event);
-        return event;
+        streamBridge.send(type, fruit);
+        return fruit;
     }
 
     @Bean
-    public Consumer<Event> pieReceived() {
-        return event -> log.info("Received: {}", event);
+    public Consumer<Pie> pieReceived() {
+        return pie -> log.info("Received: {}", pie);
     }
 }

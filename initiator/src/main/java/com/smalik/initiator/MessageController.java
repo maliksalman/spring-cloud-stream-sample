@@ -11,12 +11,12 @@ public class MessageController {
     private final MessageService messageService;
 
     @PostMapping("/generate/apple")
-    public Event generateAppleEvent() {
+    public Fruit generateAppleEvent() {
         return messageService.generate("apple");
     }
 
     @PostMapping("/generate/orange")
-    public Event generateOrangeEvent() {
+    public Fruit generateOrangeEvent() {
         return messageService.generate("orange");
     }
 }
