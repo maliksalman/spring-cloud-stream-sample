@@ -37,7 +37,7 @@ The username/password to access this RabbitMQ dashboard instance would be `guest
 
 ### 3.2 Running with Kafka (in docker)
 
-The following command will start Kafka/Zookeeper running on ports 9092 (kafka) and 2181 (zookeeper). When running this way, start the applications with `kafka` spring profile (default profile will assume RabbitMQ). Since version 3.2.0 of the image, there is now a UI for the kafka broker available on port 8080 in the continer, but we will expose it on port 9090 so it doesn't interefere with our `initiator` application - access it using [http://localhost:9090](http://localhost:9090). In the command bellow, replace `{{{YOUR_HOSTNAME_HERE}}}` with either your computer's hostname or IP address.
+The following command will start Kafka/Zookeeper running on ports 9092 (kafka) and 2181 (zookeeper). When running this way, start the applications with `kafka` spring profile (default profile will assume RabbitMQ). Since version 3.2.0 of the image, there is now a UI for the kafka broker available on port 8080 in the continer, but we will expose it on port 9090 so it doesn't interefere with our `initiator` application - access it using [http://localhost:9090](http://localhost:9090). In the command below, replace `{{{YOUR_HOSTNAME_HERE}}}` with either your computer's hostname or IP address.
 
 ```
 docker run --rm -d -p 9090:8080 -p 2181:2181 -p 9092:9092 -e ENABLE_KAFKA_UI=true -e ADVERTISED_HOST={{{YOUR_HOSTNAME_HERE}}} maliksalman/kafka-dev:3.2.0
