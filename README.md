@@ -23,7 +23,7 @@ where *APPNAME* is either `initiator` or `responder`
 
 ## 3. Running pre-requisites
 
-These sample applications need a running instance of RabbitMQ or Kafka to function. Since the components use spring-cloud-stream abstraction, it can potentially work with any of the spring-cloud-stream 'binders' but was only tested with RabbitMQ and Kafka. You have to pick the same messaging technology for both components - these project don't show how to mix and match multiple messaging technologies in the same application but that is entirely possible.
+These sample applications need a running instance of RabbitMQ or Kafka to function. Since the components use [**spring-cloud-stream**](https://spring.io/projects/spring-cloud-stream) abstraction, it can potentially work with any of the spring-cloud-stream _*binders*_ but these samples were only tested with RabbitMQ and Kafka binders. You have to pick the same messaging technology for both components - these project don't show how to mix and match multiple messaging technologies in the same application but that is entirely possible.
 
 ### 3.1 Running with RabbitMQ (in docker)
 
@@ -37,7 +37,7 @@ The username/password to access this RabbitMQ dashboard instance would be `guest
 
 ### 3.2 Running with Kafka (in docker)
 
-The following command will start Kafka/Zookeeper running on ports 9092 (kafka) and 2181 (zookeeper). When running this way, start the applications with `kafka` spring profile (default profile will assume RabbitMQ). Since version 3.2.0 of the image, there is now a UI for the kafka broker available on port 8080 in the continer, but we will expose it on port 9090 so it doesn't interefere with our `initiator` application - access it using [http://localhost:9090](http://localhost:9090). In the command below, replace `{{{YOUR_HOSTNAME_HERE}}}` with either your computer's hostname or IP address.
+The following command will start Kafka/Zookeeper running on ports 9092 (kafka) and 2181 (zookeeper). When running this way, start the applications with `kafka` spring profile (default profile will assume RabbitMQ). Since version 3.2.0 of the image, there is now a UI for the kafka broker available on port 8080 in the continer, but we will expose it on port 9090, so it doesn't interfere with our `initiator` application - access it using [http://localhost:9090](http://localhost:9090). In the command below, replace `{{{YOUR_HOSTNAME_HERE}}}` with either your computer's hostname or IP address.
 
 ```
 docker run --rm -d -p 9090:8080 -p 2181:2181 -p 9092:9092 -e ENABLE_KAFKA_UI=true -e ADVERTISED_HOST={{{YOUR_HOSTNAME_HERE}}} maliksalman/kafka-dev:3.2.0
