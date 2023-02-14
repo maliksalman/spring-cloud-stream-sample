@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/produce")
+@RequestMapping("/generate")
 public class FruitController {
 
     private final FruitProducer fruitProducer;
