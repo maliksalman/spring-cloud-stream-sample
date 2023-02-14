@@ -2,21 +2,23 @@ package com.smalik.initiator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class MessageController {
+@RequestMapping("/produce")
+public class FruitController {
 
-    private final MessageService messageService;
+    private final FruitProducer fruitProducer;
 
-    @PostMapping("/generate/apple")
+    @PostMapping("/apple")
     public Fruit generateAppleEvent() {
-        return messageService.generate("apple");
+        return fruitProducer.produce("apple");
     }
 
-    @PostMapping("/generate/orange")
+    @PostMapping("/orange")
     public Fruit generateOrangeEvent() {
-        return messageService.generate("orange");
+        return fruitProducer.produce("orange");
     }
 }
