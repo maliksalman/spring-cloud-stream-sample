@@ -4,6 +4,7 @@ A sample set of spring-boot applications that use spring-cloud-stream to exchang
 
 There are two components in this system, the `initiator` and `responder`. Initiator listens on a port for *POST* calls and generates events. The `responder` only listens and generates events, it doesn't have an API.
 
+> You need *JDK 17* or later to run and build the applications
 
 ## 1. Building
 
