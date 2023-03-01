@@ -1,18 +1,12 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.6'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'org.springframework.boot' version '3.0.3'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.smalik'
 version = '1.0'
-sourceCompatibility = '11'
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -22,7 +16,7 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	implementation platform('org.springframework.cloud:spring-cloud-dependencies:2020.0.4')
+	implementation platform('org.springframework.cloud:spring-cloud-dependencies:2022.0.1')
 	implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit'
 	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 
