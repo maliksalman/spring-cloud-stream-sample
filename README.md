@@ -47,7 +47,7 @@ initiator/spring-boot-run.sh kafka
 
 ### 2.3 Clean up
 
-Because there are two components and they both share a single container instance, the configuration only starts a dev container when any of the components is started. The dev container is not shutdown. To shut down and remove the dev containers, run `docker compose -f compose-kafka.yaml down` or `docker compose -f compose-rabbit.yaml down` 
+Because there are two components and they both share a single container instance, the configuration only starts a dev container when any of the components is started. The dev container is not shutdown when any of the components is terminated - this is not the default behavior for the docker-compose support in spring-boot but was configured to act this way intentionally for this application. To shut down and remove the dev containers when they are not needed, run `docker compose -f compose-kafka.yaml down` or `docker compose -f compose-rabbit.yaml down` 
 
 ## 3. Kind of events
 
