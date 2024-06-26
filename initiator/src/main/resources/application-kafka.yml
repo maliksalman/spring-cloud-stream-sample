@@ -5,3 +5,6 @@ spring:
       kafka:
         binder:
           minPartitionCount: 2
+  docker:
+    compose:
+      file: ../compose-kafka.yaml

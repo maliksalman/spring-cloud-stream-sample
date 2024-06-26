@@ -9,4 +9,4 @@ applications:
     services:
       - sample-events
     env:
-      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+}}'
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 21.+}}'

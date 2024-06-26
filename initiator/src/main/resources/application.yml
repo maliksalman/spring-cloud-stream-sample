@@ -16,3 +16,7 @@ spring:
           destination: orange-topic
         pieReceived-in-0:
           destination: pie-topic
+  docker:
+    compose:
+      file: ../compose-rabbit.yaml
+      lifecycle-management: start_only

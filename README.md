@@ -4,47 +4,52 @@ A sample set of spring-boot applications that use spring-cloud-stream to exchang
 
 There are two components in this system, the `initiator` and `responder`. Initiator listens on a port for *POST* calls and generates events. The `responder` only listens and generates events, it doesn't have an API.
 
-> You need *JDK 17* or later to run and build the applications
+## 1. Pre-requisites
 
-## 1. Building
+- JDK 21+
+- Docker (docker-compose)
+ 
+## 2. Running (development)
 
-Both components are built and run similarly, they are both gradle projects.
+These sample applications need a running instance of RabbitMQ or Kafka to function. Since the components use [**spring-cloud-stream**](https://spring.io/projects/spring-cloud-stream) abstraction, it can potentially work with any of the spring-cloud-stream _*binders*_ but these samples were only tested with RabbitMQ and Kafka binders. You have to pick the same messaging technology for both components - this project doesn't show how to mix and match multiple messaging technologies in the same application but that is entirely possible.
 
-```
-./gradlew clean build
-```
+Both of the components use the new [docker-compose support](https://docs.spring.io/spring-boot/reference/features/dev-services.html#features.dev-services.docker-compose) to start dev containers when run via `./mvnw spring-boot:run` command or within an IDE. For convenience, we will use [initiator/spring-boot-run.sh](initiator/spring-boot-run.sh) and [responder/spring-boot-run.sh](responder/spring-boot-run.sh) scripts to start our components. When *not* using `./mvnw` or running inside an IDE, the docker-compose support is *not* active. 
 
-## 2. Running
+### 2.1 Running with RabbitMQ (via docker-compose)
 
-```
-java -jar build/libs/{APPNAME}-1.0.jar
-```
+The following command will start the applications in the `default` spring profile. In this profile, the [compose-rabbit.yaml](compose-rabbit.yaml) will be used to start a dev container where RabbitMQ is running along with its management console. The RabbitMQ management console will be available using [http://localhost:15672](http://localhost:15672)
 
-where *APPNAME* is either `initiator` or `responder`
-
-## 3. Running pre-requisites
-
-These sample applications need a running instance of RabbitMQ or Kafka to function. Since the components use [**spring-cloud-stream**](https://spring.io/projects/spring-cloud-stream) abstraction, it can potentially work with any of the spring-cloud-stream _*binders*_ but these samples were only tested with RabbitMQ and Kafka binders. You have to pick the same messaging technology for both components - these project don't show how to mix and match multiple messaging technologies in the same application but that is entirely possible.
-
-### 3.1 Running with RabbitMQ (in docker)
-
-The following command will start RabbitMQ running on port 5672 with the admin console available at [http://localhost:15672](http://localhost:15672)
+The username/password to access this RabbitMQ management console would be `myuser`/`secret`
 
 ```
-docker run --rm -d -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+responder/spring-boot-run.sh
 ```
 
-The username/password to access this RabbitMQ dashboard instance would be `guest`/`guest`
-
-### 3.2 Running with Kafka (in docker)
-
-The following command will start Kafka/Zookeeper running on ports 9092 (kafka) and 2181 (zookeeper). When running this way, start the applications with `kafka` spring profile (default profile will assume RabbitMQ). Since version 3.2.0 of the image, there is now a UI for the kafka broker available on port 8080 in the continer, but we will expose it on port 9090, so it doesn't interfere with our `initiator` application - access it using [http://localhost:9090](http://localhost:9090). In the command below, replace `{{{YOUR_HOSTNAME_HERE}}}` with either your computer's hostname or IP address.
+and then in another terminal
 
 ```
-docker run --rm -d -p 9090:8080 -p 2181:2181 -p 9092:9092 -e ENABLE_KAFKA_UI=true -e ADVERTISED_HOST={{{YOUR_HOSTNAME_HERE}}} maliksalman/kafka-dev:3.2.0
+initiator/spring-boot-run.sh
 ```
 
-## 4. Kind of events
+### 2.2 Running with Kafka (via docker-compose)
+
+The following command will start the applications in the `kafka` spring profile. In this profile, the [compose-kafka.yaml](compose-kafka.yaml) will be used to start a dev container where Kafka/Zookeeper and kafka UI will be running. The kafka UI will be available using [http://localhost:15673](http://localhost:15673)
+
+```
+responder/spring-boot-run.sh kafka
+```
+
+and then in another terminal
+
+```
+initiator/spring-boot-run.sh kafka
+```
+
+### 2.3 Clean up
+
+Because there are two components and they both share a single container instance, the configuration only starts a dev container when any of the components is started. The dev container is not shutdown. To shut down and remove the dev containers, run `docker compose -f compose-kafka.yaml down` or `docker compose -f compose-rabbit.yaml down` 
+
+## 3. Kind of events
 
 There are 3 kinds of events that flow through this system:
 
@@ -62,3 +67,10 @@ There are 3 kinds of events that flow through this system:
 
 ![Apple Message Flow](apple-message-flow.jpg "Apple Message Flow")
 
+## 4. Verifying the application
+
+Once both `initiator` and `responder` components are up and running, we can interact with the `initiator` API endpoints via the `initiator` [swagger-ui](http://localhost:8080). For example, after executing the `/generate/orange` API, notice that the `responder` component's log shows a message like:
+
+```
+2024-06-26T15:06:25.920-04:00  INFO 99902 --- [pic.responder-1] com.smalik.responder.OrangeConsumer      : Received: Fruit(id=30638c9d-6323-4a9d-a23a-581ca0bb8081, type=orange, time=2024-06-26T19:06:25.821542Z)
+```
