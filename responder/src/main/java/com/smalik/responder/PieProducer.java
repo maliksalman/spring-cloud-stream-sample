@@ -1,23 +1,22 @@
 package com.smalik.responder;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 @Service
-@Slf4j
 public class PieProducer {
+
+    private Logger log = LoggerFactory.getLogger(PieProducer.class);
 
     @Bean
     public Function<Fruit, Pie> makeApplePie() {
         return apple -> {
             log.info("Received: {}", apple);
-            return Pie.builder()
-                    .id(apple.getId())
-                    .time(apple.getTime())
-                    .build();
+            return new Pie(apple.id(), apple.time());
         };
     }
 }
