@@ -59,11 +59,11 @@ There are 3 kinds of events that flow through this system:
 | `apple` | `initiator` | `responder` | Generate this event through the `POST /generate/apple` in the initiator component |
 | `pie` | `responder` | `initiator` | The responder generates this event upon receiving the *apple* event |
 
-### 4.1 `orange` message flow:
+### 3.1 `orange` message flow:
 
 ![Orange Message Flow](orange-message-flow.jpg "Orange Message Flow")
 
-### 4.2 `apple` and `pie` messages flow:
+### 3.2 `apple` and `pie` messages flow:
 
 ![Apple Message Flow](apple-message-flow.jpg "Apple Message Flow")
 
