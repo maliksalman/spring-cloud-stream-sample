@@ -1,3 +1,5 @@
 spring:
   application:
     name: responder
+  main:
+    web-application-type: none
