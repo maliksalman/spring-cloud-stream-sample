@@ -1,22 +1,3 @@
-springdoc:
-  swagger-ui:
-    path: /
 spring:
-  cloud:
-    function:
-      definition: pieReceived
-    stream:
-      default-binder: rabbit
-      default:
-        group: initiator
-      bindings:
-        apple:
-          destination: apple-topic
-        orange:
-          destination: orange-topic
-        pieReceived-in-0:
-          destination: pie-topic
-  docker:
-    compose:
-      file: ../compose-rabbit.yaml
-      lifecycle-management: start_only
+  application:
+    name: initiator
