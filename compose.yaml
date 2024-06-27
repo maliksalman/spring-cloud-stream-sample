@@ -1,9 +1,12 @@
 services:
-  rabbitmq:
-    image: 'rabbitmq:3-management'
+  kafka:
+    image: 'maliksalman/kafka-dev:3.7.0'
     environment:
-      - 'RABBITMQ_DEFAULT_PASS=secret'
-      - 'RABBITMQ_DEFAULT_USER=myuser'
+      - "ENABLE_KAFKA_UI=true"
+      - "ADVERTISED_HOST=${LOCALNAME}"
+    extra_hosts:
+      - "${LOCALNAME}:127.0.0.1"
     ports:
-      - '5672:5672'
-      - '15672:15672'
+      - '2181:2181'
+      - '9092:9092'
+      - '15000:8080'
