@@ -14,4 +14,7 @@ public class OrangeConsumer {
 
     private Logger log = LoggerFactory.getLogger(OrangeConsumer.class);
 
+    // orange event definition
+
+    // bean to handle receiving the orange event
 }
