@@ -1,6 +1,7 @@
 services:
   kafka:
-    image: 'maliksalman/kafka-dev:3.7.0'
+#    image: 'maliksalman/kafka-dev:3.7.0'
+    image: 'registry.lan.salmanmalik.me/maliksalman/kafka-dev:3.7.0-arm64'
     environment:
       - "ENABLE_KAFKA_UI=true"
       - "ADVERTISED_HOST=${LOCALNAME}"
