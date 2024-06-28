@@ -1,5 +1,6 @@
 package com.smalik.initiator;
 
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
