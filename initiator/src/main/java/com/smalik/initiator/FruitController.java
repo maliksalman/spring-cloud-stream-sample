@@ -1,26 +1,34 @@
 package com.smalik.initiator;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.OffsetDateTime;
+import java.util.UUID;
+
 @RestController
-@RequestMapping("/generate")
 public class FruitController {
 
-    private final FruitProducer fruitProducer;
-
-    public FruitController(FruitProducer fruitProducer) {
-        this.fruitProducer = fruitProducer;
+    public record Fruit(
+            UUID id,
+            OffsetDateTime time) {
     }
 
-    @PostMapping("/apple")
+    @PostMapping("/generate/apple")
     public Fruit generateAppleEvent() {
-        return fruitProducer.produce("apple");
+        return produce("apple");
     }
 
-    @PostMapping("/orange")
+    @PostMapping("/generate/orange")
     public Fruit generateOrangeEvent() {
-        return fruitProducer.produce("orange");
+        return produce("orange");
+    }
+
+    private Fruit produce(String type) {
+        Fruit fruit = new Fruit(UUID.randomUUID(), OffsetDateTime.now());
+
+        // send the fruit as an event
+
+        return fruit;
     }
 }
