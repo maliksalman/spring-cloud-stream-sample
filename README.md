@@ -74,3 +74,10 @@ Once both `initiator` and `responder` components are up and running, we can inte
 ```
 2024-06-26T15:06:25.920-04:00  INFO 99902 --- [pic.responder-1] com.smalik.responder.OrangeConsumer      : Received: Fruit(id=30638c9d-6323-4a9d-a23a-581ca0bb8081, type=orange, time=2024-06-26T19:06:25.821542Z)
 ```
+
+Alternatively you can curl the endpoints to produce a result by using the following commands:
+
+```
+curl -X POST http://localhost:8080/generate/orange
+curl -X POST http://localhost:8080/generate/apple
+```
