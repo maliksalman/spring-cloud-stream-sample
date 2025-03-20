@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 @Service
 public class PieConsumer {
 
-    private Logger log = LoggerFactory.getLogger(PieConsumer.class);
+    private final Logger log = LoggerFactory.getLogger(PieConsumer.class);
 
     @Bean
     public Consumer<Pie> pieReceived() {

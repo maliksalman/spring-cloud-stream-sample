@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 @Service
 public class OrangeConsumer {
 
-    private Logger log = LoggerFactory.getLogger(OrangeConsumer.class);
+    private final Logger log = LoggerFactory.getLogger(OrangeConsumer.class);
 
     @Bean
     public Consumer<Fruit> orangeReceived() {

@@ -10,7 +10,7 @@ import java.util.function.Function;
 @Service
 public class PieProducer {
 
-    private Logger log = LoggerFactory.getLogger(PieProducer.class);
+    private final Logger log = LoggerFactory.getLogger(PieProducer.class);
 
     @Bean
     public Function<Fruit, Pie> makeApplePie() {
